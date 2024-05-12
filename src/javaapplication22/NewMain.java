@@ -5,6 +5,8 @@
  */
 package javaapplication22;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Marcos
@@ -15,12 +17,68 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        //se crea un parque y se le asignan varios juegos 
+        Parque Springfield = new Parque("Springfield");
+        atracciones Montaña = new atracciones("Montaña Rusa");
+        Springfield.AgregarAtraccion(Montaña);
+        atracciones Martillo = new atracciones("Martillo");
+        Springfield.AgregarAtraccion(Martillo);
+        atracciones Zamba = new atracciones("Zamba");
+        Springfield.AgregarAtraccion(Zamba);
+        atracciones Gusano = new atracciones("Gusano Loco");
+        Springfield.AgregarAtraccion(Gusano);
+        
+        //se crean personas y se agregan al parque
+        Visitante persona = new Visitante("Marcos", 24,0);
+        Springfield.registroDeEntrada("Giraudi", 28,1);
+        Springfield.registroDeEntrada("Emanuel", 3,2);
+        Springfield.registroDeEntrada("Zara", 24,3);
+        Springfield.registroDeEntrada("Samuel", 7,4);
         
         
         
+        System.out.println("Bienvenido al parque "+ Springfield.getNombreDelParque()+ "Que accion desea realizar?");
+        int opcion = 0;
         
-        
-        
+        do {
+            System.out.println("Menú:");
+            System.out.println("1. Registrar entrada de clientes");
+            System.out.println("2. verificar la cantidad de visitantes en el parque");
+            System.out.println("3. Marcar la salida de un visitante");
+            System.out.println("4. Consultar la fila de algun juego");
+            System.out.println("5. Buscar niño pardido");
+            System.out.println("6. Salir");
+            System.out.print("Ingrese su opción: ");
+            opcion= sc.nextInt();
+            
+            switch(opcion){
+                case 1:
+                    System.out.println("Registro de Entrada");
+                    System.out.println("Ingrese nombre");
+                    String nombre = sc.next();
+                    
+                    System.out.println("Ingrese edad");
+                    
+                    int edad = sc.nextInt();
+                    
+                    System.out.println("Ingrese numero de identificacion");
+                    
+                    int id = sc.nextInt();
+                    
+                    Springfield.registroDeEntrada(nombre, edad, id);//no tengo ni idea si lo agrega o no
+                    
+                    break;
+                case 2:
+                    System.out.println("Ha seleccionado la Opción 2");
+                    // Lógica para la Opción 2
+                    break;
+                case 3:
+                    System.out.println("Saliendo del programa...");
+                    break;
+            }
+        } while (opcion != 6);
         
         
         
@@ -29,8 +87,9 @@ public class NewMain {
         
         
     }
+    }
     
-}
+
 //Llegó el parque de diversiones
 //Un parque de diversiones está implementando un nuevo sistema de control de 
 //entrada para administrar la concurrencia de visitantes, con un enfoque especial en 
@@ -41,12 +100,6 @@ public class NewMain {
 //El desafío es diseñar un programa en Java que modele este sistema de control de 
 //entrada utilizando filas (`Queue`). El programa debe ser capaz de realizar las 
 //siguientes funciones:
-//1. Registro de entrada de visitantes: Cuando un visitante llega al parque, se 
-//agrega a la cola general de entrada. Cada visitante tiene un identificador único.
-//2. Control de capacidad general: El sistema debe verificar periódicamente si el 
-//número total de visitantes dentro del parque ha alcanzado la capacidad máxima 
-//permitida. Si es así, el sistema debe detener temporalmente la entrada de nuevos 
-//visitantes hasta que haya suficiente espacio disponible dentro del parque.
 //3. Registro de salida de visitantes: Cuando un visitante decide salir del parque, se 
 //elimina de la cola general de entrada.
 //4. Filas para atracciones populares: Además de la cola general de entrada, el 
